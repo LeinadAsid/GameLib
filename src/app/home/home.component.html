@@ -1,7 +1,10 @@
 <main class="h-full bg-slate-800">
-  <div class="pagePadding m-auto h-full">
+  <div class="h-full m-auto pagePadding">
     <div class="w-[250px] h-[300px]">
-      <new-game-card />
+      <new-game-card (addGame)="setAdding(true)" />
     </div>
   </div>
 </main>
+
+
+<add-new-game-modal [hidden]="!isAdding()" (closeModal)="setAdding(false)" />
