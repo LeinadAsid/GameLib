@@ -1,0 +1,13 @@
+<div class="flex">
+  @for (_ of [].constructor(5); track $index) {
+    <!-- prettier-ignore-attribute -->
+    <span
+      (click)="qtdHandle($index + 1)"
+      class="transition-all duration-300 ease-in-out select-none fill-current star-icon material-symbols-outlined text-4xl @sm:text-5xl @md:text-6xl @lg:text-7xl"
+      style="font-variation-settings: 'FILL' 1"
+      [ngClass]="[qtd >= $index + 1 ? 'text-yellow-300' : 'text-white/50', editable ? 'cursor-pointer hover:scale-125' : '']"
+    >
+      star
+    </span>
+  }
+</div>

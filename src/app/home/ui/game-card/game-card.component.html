@@ -1,0 +1,30 @@
+<div
+  class="relative flex items-center justify-center w-full h-full overflow-hidden cursor-pointer select-none rounded-xl group"
+>
+  <img
+    [src]="game?.image"
+    draggable="false"
+    class="object-contain w-full h-full"
+  />
+
+  <div
+    class="absolute top-0 left-0 w-full h-full px-4 py-8 transition-all duration-300 ease-in-out opacity-0 bg-black/75 group-hover:opacity-100"
+  >
+    <div class="flex flex-col h-full">
+      <p class="font-bold text-white">{{ game?.title }}</p>
+
+      <p class="mt-5 text-white">
+        {{ game?.review | slice: 0 : 60 }}
+        {{ (game?.review?.length ?? 0) >= 60 ? "..." : "" }}
+      </p>
+
+      <a class="mt-auto mb-2"
+        ><p class="text-sm text-center text-white">Click to see more...</p></a
+      >
+
+      <div class="@container w-full flex justify-center">
+        <stars [qtd]="game?.rate ?? 1" />
+      </div>
+    </div>
+  </div>
+</div>

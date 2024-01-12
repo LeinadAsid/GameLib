@@ -1,10 +1,31 @@
-<main class="h-full bg-slate-800">
+<main class="min-h-screen bg-slate-800">
   <div class="h-full m-auto pagePadding">
-    <div class="w-[250px] h-[300px]">
-      <new-game-card (addGame)="setAdding(true)" />
+    <div class="flex flex-wrap gap-5" cdkDropListGroup>
+      <div class="w-[250px] h-[300px]">
+        <new-game-card (addGame)="setAdding(true)" />
+      </div>
+
+      @if (gamesService.games$ | async; as games) {
+        @for (game of games; track $index) {
+          <div
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            [cdkDropListData]="{ index: $index, item: game }"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div cdkDrag class="w-[250px] h-[300px]">
+              <div *cdkDragPlaceholder></div>
+              <game-card [game]="game" />
+            </div>
+          </div>
+        }
+      }
     </div>
   </div>
 </main>
 
-
-<add-new-game-modal [hidden]="!isAdding()" (closeModal)="setAdding(false)" />
+<add-new-game-modal
+  [hidden]="!isAdding()"
+  (closeModal)="setAdding(false)"
+  (saveGame)="saveGame($event)"
+/>
